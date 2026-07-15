@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oil Ragzs — Work Wear for the Hard Working Person</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --oil-black:#0f1013;
+    --panel:#1b1d22;
+    --panel-2:#232529;
+    --rust:#d9622f;
+    --rust-dim:#a6491f;
+    --sand:#d9c9a3;
+    --steel:#7a808a;
+    --silver:#c9cbd1;
+    --line: rgba(201,203,209,0.14);
+    --radius: 2px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--oil-black);
+    color:var(--silver);
+    font-family:'Work Sans', sans-serif;
+    font-size:16px;
+    line-height:1.5;
+  }
+  h1,h2,h3,.display{
+    font-family:'Oswald', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.03em;
+    color:#f3efe6;
+    margin:0;
+  }
+  .mono{
+    font-family:'IBM Plex Mono', monospace;
+  }
+  a{color:inherit;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:1240px; margin:0 auto; padding:0 28px;}
+
+  /* NAV */
+  header.site{
+    position:sticky; top:0; z-index:50;
+    background:rgba(15,16,19,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .navbar{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 28px;
+    max-width:1240px; margin:0 auto;
+  }
+  .logo{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Oswald',sans-serif; font-weight:700; letter-spacing:0.06em;
+    font-size:20px; color:#f3efe6; text-decoration:none;
+  }
+  .logo .chip{
+    width:10px;height:10px;background:var(--rust); transform:rotate(45deg);
+  }
+  nav.links{display:flex; gap:28px; font-size:14px; letter-spacing:0.04em; text-transform:uppercase;}
+  nav.links a{text-decoration:none; color:var(--silver); border-bottom:1px solid transparent; padding-bottom:4px; transition:color .15s, border-color .15s;}
+  nav.links a:hover{color:var(--rust); border-color:var(--rust);}
+  .cart-btn{
+    display:flex; align-items:center; gap:8px;
+    background:transparent; border:1px solid var(--line); color:var(--silver);
+    padding:9px 14px; cursor:pointer; font-family:'IBM Plex Mono',monospace; font-size:13px;
+    border-radius:var(--radius);
+  }
+  .cart-btn:hover{border-color:var(--rust); color:var(--rust);}
+  .cart-count{
+    background:var(--rust); color:#fff; border-radius:50%;
+    min-width:18px; height:18px; font-size:11px; display:flex; align-items:center; justify-content:center;
+  }
+
+  /* HERO */
+  .hero{
+    padding:64px 0 0;
+    border-bottom:1px solid var(--line);
+  }
+  .hero-grid{
+    display:grid; grid-template-columns: 1.1fr 0.9fr; gap:48px; align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace; color:var(--rust); font-size:13px;
+    letter-spacing:0.18em; text-transform:uppercase; margin-bottom:18px; display:block;
+  }
+  .hero h1{font-size:clamp(38px,5vw,64px); line-height:1.02;}
+  .hero h1 span{color:var(--rust);}
+  .hero p.lede{
+    font-size:17px; color:var(--steel); max-width:460px; margin-top:20px;
+  }
+  .hero-ctas{display:flex; gap:14px; margin-top:32px;}
+  .btn{
+    font-family:'IBM Plex Mono',monospace; text-transform:uppercase; font-size:13px; letter-spacing:0.06em;
+    padding:14px 26px; border-radius:var(--radius); cursor:pointer; border:1px solid transparent;
+    text-decoration:none; display:inline-block;
+  }
+  .btn-primary{background:var(--rust); color:#0f1013; font-weight:600;}
+  .btn-primary:hover{background:#ea7442;}
+  .btn-ghost{border-color:var(--line); color:var(--silver);}
+  .btn-ghost:hover{border-color:var(--rust); color:var(--rust);}
+
+  .founder-frame{
+    position:relative;
+    border:1px solid var(--line);
+    background:var(--panel);
+    padding:14px;
+  }
+  .founder-frame img{
+    width:100%; height:520px; object-fit:cover; object-position: top center;
+    filter:grayscale(15%) contrast(1.05);
+  }
+  .founder-tag{
+    position:absolute; left:34px; bottom:34px;
+    background:var(--oil-black); border:1px solid var(--rust);
+    padding:10px 16px;
+    display:flex; flex-direction:column; gap:2px;
+  }
+  .founder-tag .role{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.12em; color:var(--rust); text-transform:uppercase;}
+  .founder-tag .name{font-family:'Oswald',sans-serif; font-size:18px; color:#f3efe6; text-transform:uppercase;}
+  .stamp{
+    position:absolute; top:-18px; right:-18px;
+    width:96px; height:96px; border-radius:50%;
+    border:2px solid var(--sand);
+    display:flex; align-items:center; justify-content:center; text-align:center;
+    transform:rotate(12deg);
+    font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--sand);
+    letter-spacing:0.08em; text-transform:uppercase; line-height:1.3;
+    background:rgba(15,16,19,0.85);
+  }
+
+  /* MARQUEE */
+  .marquee-wrap{
+    overflow:hidden; border-bottom:1px solid var(--line);
+    background:var(--panel);
+    padding:14px 0;
+  }
+  .marquee{
+    display:flex; gap:48px; white-space:nowrap; width:max-content;
+    animation:scroll 26s linear infinite;
+    font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:0.08em; font-size:15px; color:var(--steel);
+  }
+  .marquee span.dot{color:var(--rust); margin:0 6px;}
+  @keyframes scroll{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
+
+  /* SECTIONS */
+  section.shop{padding:84px 0; border-bottom:1px solid var(--line);}
+  .section-head{
+    display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:36px; gap:24px;
+    flex-wrap:wrap;
+  }
+  .section-head h2{font-size:clamp(28px,3vw,40px);}
+  .section-head .count{font-family:'IBM Plex Mono',monospace; color:var(--steel); font-size:13px;}
+  .section-desc{color:var(--steel); max-width:520px; font-size:15px; margin-top:8px;}
+
+  .grid{
+    display:grid; grid-template-columns:repeat(auto-fill, minmax(260px,1fr)); gap:26px;
+  }
+  .card{
+    background:var(--panel); border:1px solid var(--line);
+    display:flex; flex-direction:column;
+    transition:border-color .15s;
+  }
+  .card:hover{border-color:var(--rust-dim);}
+  .card .imgbox{
+    position:relative; aspect-ratio:1/1; overflow:hidden; background:var(--panel-2);
+    border-bottom:1px solid var(--line);
+  }
+  .card .imgbox img{width:100%; height:100%; object-fit:cover;}
+  .price-tag{
+    position:absolute; top:12px; right:12px;
+    background:var(--oil-black); border:1px solid var(--sand);
+    color:var(--sand); font-family:'IBM Plex Mono',monospace; font-size:13px;
+    padding:5px 10px; display:flex; align-items:center; gap:6px;
+  }
+  .price-tag::before{
+    content:''; width:6px; height:6px; border-radius:50%; border:1px solid var(--sand); display:block;
+  }
+  .card-body{padding:18px 18px 20px; display:flex; flex-direction:column; gap:12px; flex:1;}
+  .card-body h3{font-size:17px; letter-spacing:0.02em;}
+  .card-body .sub{font-size:12px; color:var(--steel); font-family:'IBM Plex Mono',monospace; text-transform:uppercase; letter-spacing:0.06em;}
+  .sizes{display:flex; gap:6px; flex-wrap:wrap; margin-top:auto;}
+  .sizes button{
+    background:transparent; border:1px solid var(--line); color:var(--silver);
+    font-family:'IBM Plex Mono',monospace; font-size:12px; padding:6px 10px; cursor:pointer;
+  }
+  .sizes button.active{border-color:var(--rust); color:var(--rust);}
+  .add-btn{
+    margin-top:10px; width:100%; background:var(--panel-2); border:1px solid var(--line); color:var(--silver);
+    font-family:'IBM Plex Mono',monospace; text-transform:uppercase; font-size:12px; letter-spacing:0.06em;
+    padding:11px; cursor:pointer;
+  }
+  .add-btn:hover{background:var(--rust); border-color:var(--rust); color:#0f1013;}
+
+  /* sticker grid variant - denser */
+  .sticker-grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(150px,1fr)); gap:16px;}
+  .sticker-card{background:var(--panel); border:1px solid var(--line); padding:12px; text-align:center; display:flex; flex-direction:column; gap:8px;}
+  .sticker-card .imgbox{aspect-ratio:1/1; background:var(--panel-2); border:1px solid var(--line); display:flex; align-items:center; justify-content:center; padding:8px; overflow:hidden;}
+  .sticker-card .imgbox img{width:100%; height:100%; object-fit:contain;}
+  .sticker-card .name{font-size:11px; color:var(--steel); font-family:'IBM Plex Mono',monospace; text-transform:uppercase; letter-spacing:0.02em; min-height:26px;}
+  .sticker-card .price{font-family:'IBM Plex Mono',monospace; color:var(--sand); font-size:13px;}
+  .sticker-card button{
+    background:transparent; border:1px solid var(--line); color:var(--silver); font-family:'IBM Plex Mono',monospace;
+    font-size:11px; padding:7px; cursor:pointer; text-transform:uppercase;
+  }
+  .sticker-card button:hover{background:var(--rust); border-color:var(--rust); color:#0f1013;}
+
+  /* FOUNDER SECTION detail */
+  .founder-section{padding:84px 0; border-bottom:1px solid var(--line); background:var(--panel);}
+
+  /* GALLERY */
+  .gallery-section{padding:84px 0; border-bottom:1px solid var(--line);}
+  .gallery-grid{
+    display:grid; grid-template-columns:repeat(4, 1fr); grid-auto-rows:200px; gap:14px;
+  }
+  .gallery-item{position:relative; overflow:hidden; border:1px solid var(--line); background:var(--panel-2);}
+  .gallery-item img{width:100%; height:100%; object-fit:cover; transition:transform .35s ease;}
+  .gallery-item:hover img{transform:scale(1.05);}
+  .gallery-item.wide{grid-column:span 2;}
+  .gallery-item.tall{grid-row:span 2;}
+  .gallery-tag{
+    position:absolute; left:10px; bottom:10px;
+    background:rgba(15,16,19,0.8); border:1px solid var(--rust); color:var(--sand);
+    font-family:'IBM Plex Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:0.08em;
+    padding:4px 9px;
+  }
+  @media (max-width:900px){
+    .gallery-grid{grid-template-columns:repeat(2, 1fr); grid-auto-rows:170px;}
+    .gallery-item.wide{grid-column:span 2;}
+  }
+  .founder-detail{display:grid; grid-template-columns:0.8fr 1.2fr; gap:56px; align-items:center;}
+  .founder-detail img{border:1px solid var(--line); filter:grayscale(15%);}
+  .founder-detail blockquote{
+    font-family:'Oswald',sans-serif; font-size:26px; color:#f3efe6; line-height:1.35; margin:0 0 20px;
+    text-transform:none; letter-spacing:0;
+  }
+  .founder-detail p{color:var(--steel); font-size:15px;}
+
+  /* FOOTER */
+  footer{padding:56px 0 40px;}
+  .footer-grid{display:flex; justify-content:space-between; flex-wrap:wrap; gap:32px;}
+  .footer-brand .logo{margin-bottom:14px;}
+  .footer-brand p{color:var(--steel); max-width:320px; font-size:14px;}
+  .footer-col h4{font-family:'IBM Plex Mono',monospace; font-size:12px; text-transform:uppercase; letter-spacing:0.1em; color:var(--rust); margin-bottom:14px;}
+  .footer-col ul{list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:8px; font-size:14px; color:var(--steel);}
+  .fine{margin-top:48px; padding-top:24px; border-top:1px solid var(--line); font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--steel); display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;}
+
+  /* CART DRAWER */
+  .overlay{
+    position:fixed; inset:0; background:rgba(0,0,0,0.55); z-index:90;
+    opacity:0; pointer-events:none; transition:opacity .2s;
+  }
+  .overlay.open{opacity:1; pointer-events:auto;}
+  .drawer{
+    position:fixed; top:0; right:0; height:100%; width:400px; max-width:92vw;
+    background:var(--panel); border-left:1px solid var(--line); z-index:100;
+    transform:translateX(100%); transition:transform .25s ease; display:flex; flex-direction:column;
+  }
+  .drawer.open{transform:translateX(0);}
+  .drawer-head{display:flex; justify-content:space-between; align-items:center; padding:22px 24px; border-bottom:1px solid var(--line);}
+  .drawer-head h3{font-size:18px;}
+  .drawer-close{background:none; border:none; color:var(--silver); font-size:22px; cursor:pointer;}
+  .drawer-items{flex:1; overflow-y:auto; padding:18px 24px; display:flex; flex-direction:column; gap:16px;}
+  .drawer-item{display:flex; gap:12px; border-bottom:1px solid var(--line); padding-bottom:16px;}
+  .drawer-item img{width:64px; height:64px; object-fit:cover; border:1px solid var(--line);}
+  .drawer-item .info{flex:1; display:flex; flex-direction:column; gap:4px;}
+  .drawer-item .info .name{font-size:14px; color:#f3efe6;}
+  .drawer-item .info .meta{font-size:12px; color:var(--steel); font-family:'IBM Plex Mono',monospace;}
+  .drawer-item .qty{display:flex; align-items:center; gap:8px; font-family:'IBM Plex Mono',monospace;}
+  .drawer-item .qty button{background:var(--panel-2); border:1px solid var(--line); color:var(--silver); width:22px; height:22px; cursor:pointer;}
+  .drawer-item .remove{font-size:11px; color:var(--rust); cursor:pointer; background:none; border:none; font-family:'IBM Plex Mono',monospace; text-transform:uppercase; padding:0; text-align:left;}
+  .drawer-empty{color:var(--steel); font-size:14px; padding:40px 0; text-align:center;}
+  .drawer-foot{border-top:1px solid var(--line); padding:20px 24px 26px;}
+  .subtotal-row{display:flex; justify-content:space-between; font-family:'IBM Plex Mono',monospace; margin-bottom:16px; font-size:15px; color:#f3efe6;}
+  .checkout-btn{width:100%; padding:15px; background:var(--rust); border:none; color:#0f1013; font-family:'IBM Plex Mono',monospace; text-transform:uppercase; font-size:13px; letter-spacing:0.06em; cursor:pointer;}
+  .checkout-note{font-size:11px; color:var(--steel); margin-top:10px; text-align:center;}
+
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr;}
+    .founder-frame img{height:380px;}
+    .founder-detail{grid-template-columns:1fr;}
+    nav.links{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="navbar">
+    <a href="#" class="logo"><span class="chip"></span>OIL RAGZS</a>
+    <nav class="links">
+      <a href="#hoodies">Hoodies</a>
+      <a href="#tees">Tees</a>
+      <a href="#hats">Hats</a>
+      <a href="#stickers">Hard Hat Stickers</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#founder">Founder</a>
+    </nav>
+    <button class="cart-btn" onclick="openCart()">CART <span class="cart-count" id="cartCount">0</span></button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Est. 2024 — Work Wear Co.</span>
+      <h1>Gear built for the<br><span>hard working person.</span></h1>
+      <p class="lede">Oil field, rail line, job site, or highway — Oil Ragzs makes work wear for the people who actually get their hands dirty. No gimmicks, just gear that holds up.</p>
+      <div class="hero-ctas">
+        <a href="#hoodies" class="btn btn-primary">Shop Hoodies</a>
+        <a href="#founder" class="btn btn-ghost">Our Story</a>
+      </div>
+    </div>
+    <div class="founder-frame">
+      <div class="stamp">Oil Ragzs<br>Founder</div>
+      <img src="assets/founder.jpg" alt="Oil Ragzs founder wearing the Work Wear hoodie and cap">
+      <div class="founder-tag">
+        <span class="role">Founded By</span>
+        <span class="name">Our Founder</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee-wrap">
+  <div class="marquee" id="marquee"></div>
+</div>
+
+<!-- HOODIES -->
+<section class="shop" id="hoodies">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <h2>Hoodies</h2>
+        <p class="section-desc">Heavyweight fleece, badge chest print, RAGZS down the sleeve. Built to layer under a jacket or wear on its own.</p>
+      </div>
+      <span class="count mono">$75 EACH</span>
+    </div>
+    <div class="grid" id="hoodieGrid"></div>
+  </div>
+</section>
+
+<!-- TEES -->
+<section class="shop" id="tees">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <h2>T-Shirts</h2>
+        <p class="section-desc">Everyday cotton tee with the Work Wear badge front and center.</p>
+      </div>
+      <span class="count mono">$40 EACH</span>
+    </div>
+    <div class="grid" id="teeGrid"></div>
+  </div>
+</section>
+
+<!-- HATS -->
+<section class="shop" id="hats">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <h2>Hats</h2>
+        <p class="section-desc">Two ways to rep it — structured trucker or the classic script logo.</p>
+      </div>
+      <span class="count mono">$55 EACH</span>
+    </div>
+    <div class="grid" id="hatGrid"></div>
+  </div>
+</section>
+
+<!-- STICKERS -->
+<section class="shop" id="stickers">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <h2>Hard Hat Stickers</h2>
+        <p class="section-desc">Stack 'em on the hard hat, toolbox, or bumper. Every logo variation we've got, $3 a piece.</p>
+      </div>
+      <span class="count mono">$3 EACH</span>
+    </div>
+    <div class="sticker-grid" id="stickerGrid"></div>
+  </div>
+</section>
+
+<!-- FOUNDER -->
+<!-- GALLERY -->
+<section class="gallery-section" id="gallery">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <h2>In The Field</h2>
+        <p class="section-desc">Built for the oil field, the rail yard, the job site, the ag equipment, and the road — this is who Oil Ragzs is made for.</p>
+      </div>
+      <span class="count mono">OIL &amp; GAS · RAIL · AG · CONSTRUCTION · TRANSPORT</span>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item wide tall"><img src="assets/gallery-truck-three.jpg" alt="Three workers in Oil Ragzs gear at an oil field sunset"><div class="gallery-tag">Oil &amp; Gas</div></div>
+      <div class="gallery-item"><img src="assets/gallery-couple-rig.jpg" alt="Couple wearing Oil Ragzs hoodies at an oil pump jack"><div class="gallery-tag">Oil &amp; Gas</div></div>
+      <div class="gallery-item wide"><img src="assets/gallery-construction-beam.jpg" alt="Construction crew wearing Oil Ragzs gear on a steel beam above the city"><div class="gallery-tag">Construction</div></div>
+      <div class="gallery-item"><img src="assets/gallery-transport-trucker.jpg" alt="Truck driver wearing Oil Ragzs hoodie in front of a semi truck"><div class="gallery-tag">Transport</div></div>
+      <div class="gallery-item"><img src="assets/gallery-ag-field.jpg" alt="Man wearing Oil Ragzs tee in front of a tractor at sunset"><div class="gallery-tag">Agriculture</div></div>
+      <div class="gallery-item"><img src="assets/gallery-rail-vest.jpg" alt="Rail worker wearing Oil Ragzs hoodie with safety vest near train tracks"><div class="gallery-tag">Rail</div></div>
+      <div class="gallery-item"><img src="assets/gallery-construction-hoodie.jpg" alt="Woman wearing Oil Ragzs hoodie at a construction site"><div class="gallery-tag">Construction</div></div>
+      <div class="gallery-item"><img src="assets/gallery-transport-hoodie.jpg" alt="Woman wearing Oil Ragzs hoodie in front of a semi truck"><div class="gallery-tag">Transport</div></div>
+      <div class="gallery-item"><img src="assets/gallery-ag-tee.jpg" alt="Man wearing Oil Ragzs tee near farm equipment"><div class="gallery-tag">Agriculture</div></div>
+      <div class="gallery-item wide"><img src="assets/gallery-truck-three-alt.jpg" alt="Oil field crew leaning on a truck at sunset"><div class="gallery-tag">Oil &amp; Gas</div></div>
+      <div class="gallery-item"><img src="assets/gallery-hoodie-street.jpg" alt="Man wearing black Oil Ragzs hoodie on a city street"></div>
+      <div class="gallery-item"><img src="assets/gallery-woman-black.jpg" alt="Woman wearing black Oil Ragzs hoodie at home"></div>
+      <div class="gallery-item wide tall"><img src="assets/gallery-mytruck-01.jpg" alt="Crude oil hauling truck and trailer parked in a field"><div class="gallery-tag">From The Road</div></div>
+      <div class="gallery-item"><img src="assets/gallery-mytruck-02.jpg" alt="Red and white crude oil hauling truck"><div class="gallery-tag">From The Road</div></div>
+      <div class="gallery-item wide"><img src="assets/gallery-construction-lunch.png" alt="Construction crew wearing Oil Ragzs gear having lunch on a steel beam above the city"><div class="gallery-tag">Construction</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="founder-section" id="founder">
+  <div class="wrap founder-detail">
+    <img src="assets/founder.jpg" alt="Oil Ragzs founder">
+    <div>
+      <span class="eyebrow">The Story</span>
+      <blockquote>"Oil Ragzs started on the job, not in a boardroom. It's gear made by someone who's actually worn it through a full shift."</blockquote>
+      <p>Every piece is designed around what work actually demands — oil field, rail yard, ag equipment, construction site, or the road hauling it all. Oil Ragzs is built for the hard working person, first and always.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo"><span class="chip"></span>OIL RAGZS</a>
+        <p>Work wear for oil, rail, agriculture, construction, and transport — built for the hard working person.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#hoodies">Hoodies</a></li>
+          <li><a href="#tees">T-Shirts</a></li>
+          <li><a href="#hats">Hats</a></li>
+          <li><a href="#stickers">Hard Hat Stickers</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Industries</h4>
+        <ul>
+          <li>Oil &amp; Gas</li>
+          <li>Rail</li>
+          <li>Agriculture</li>
+          <li>Construction</li>
+          <li>Transport</li>
+        </ul>
+      </div>
+    </div>
+    <div class="fine">
+      <span>© 2024 Oil Ragzs. Est. 2024.</span>
+      <span>oilragzs.com · oilragzs.ca</span>
+    </div>
+  </div>
+</footer>
+
+<div class="overlay" id="overlay" onclick="closeCart()"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-head">
+    <h3>Your Cart</h3>
+    <button class="drawer-close" onclick="closeCart()">&times;</button>
+  </div>
+  <div class="drawer-items" id="drawerItems"></div>
+  <div class="drawer-foot">
+    <div class="subtotal-row"><span>Subtotal</span><span id="subtotal">$0.00</span></div>
+    <button class="checkout-btn" onclick="checkout()">Checkout</button>
+    <div class="checkout-note">Online checkout is coming soon — this button doesn't charge a card yet.</div>
+  </div>
+</div>
+
+<script>
+  // ---- Industries marquee ----
+  const industries = ["OIL & GAS","RAIL","AGRICULTURE","CONSTRUCTION","TRANSPORT"];
+  const marqueeEl = document.getElementById('marquee');
+  let marqueeHTML = '';
+  for(let i=0;i<4;i++){
+    industries.forEach(it => marqueeHTML += `<span>${it}</span><span class="dot">&#9670;</span>`);
+  }
+  marqueeEl.innerHTML = marqueeHTML;
+
+  // ---- Product data ----
+  const SIZES = ["S","M","L","XL","2XL","3XL"];
+
+  const hoodies = [
+    {id:"hoodie-black", name:"Oil Black Hoodie", price:75, img:"assets/hoodie-black.jpg", sub:"Work Wear Badge · Black"},
+    {id:"hoodie-white", name:"Sand White Hoodie", price:75, img:"assets/hoodie-white.jpg", sub:"Work Wear Badge · White"},
+    {id:"hoodie-black-classic", name:"Classic Black Hoodie", price:75, img:"assets/hoodie-black-worn.jpeg", sub:"Work Wear Badge · Black"},
+    {id:"hoodie-white-clean", name:"Classic White Hoodie", price:75, img:"assets/hoodie-white-clean.jpg", sub:"Work Wear Badge · White"},
+  ];
+
+  const tees = [
+    {id:"tee-black", name:"Oil Black Tee", price:40, img:"assets/tee-black.jpg", sub:"Work Wear Badge · Black"},
+    {id:"tee-sand", name:"Sand Tee", price:40, img:"assets/tee-sand.jpg", sub:"Work Wear Badge · Sand"},
+    {id:"tee-pair", name:"Classic Tee", price:40, img:"assets/tee-pair.jpg", sub:"Work Wear Badge · Black/White"},
+  ];
+
+  const hats = [
+    {id:"hat-trucker", name:"CR Trucker Cap", price:55, img:"assets/hat-trucker-front.jpeg", sub:"Structured Mesh Back"},
+    {id:"hat-script", name:"Script Logo Cap", price:55, img:"assets/hat-script-front.jpeg", sub:"Classic Adjustable"},
+  ];
+
+  const stickerImgs = [
+    "sticker-shield-wrench.png","sticker-bandana-script.png",
+    "sticker_logo_01.png","sticker_logo_02.png","sticker_logo_03.png","sticker_logo_04.png",
+    "sticker_logo_05.png","sticker_logo_06.png","sticker_logo_07.png","sticker_logo_08.png",
+    "sticker_logo_09.png","sticker_logo_10.png","sticker_logo_11.png","sticker_logo_12.png",
+    "sticker_logo_13.png","sticker_logo_14.png","sticker_logo_15.png"
+  ];
+  const stickers = stickerImgs.map((f,i)=>({
+    id:"sticker-"+(i+1),
+    name:"Logo Sticker "+String(i+1).padStart(2,'0'),
+    price:3,
+    img:"assets/"+f
+  }));
+
+  // ---- Cart state ----
+  let cart = []; // {id, name, price, img, size, qty}
+
+  function renderApparelGrid(containerId, items){
+    const el = document.getElementById(containerId);
+    el.innerHTML = items.map(p => `
+      <div class="card">
+        <div class="imgbox">
+          <img src="${p.img}" alt="${p.name}">
+          <div class="price-tag">$${p.price}</div>
+        </div>
+        <div class="card-body">
+          <h3>${p.name}</h3>
+          <div class="sub">${p.sub}</div>
+          <div class="sizes" data-product="${p.id}">
+            ${SIZES.map((s,i) => `<button class="${i===1?'active':''}" onclick="selectSize('${p.id}', this)">${s}</button>`).join('')}
+          </div>
+          <button class="add-btn" onclick="addApparel('${p.id}')">Add to Cart</button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function renderStickerGrid(){
+    const el = document.getElementById('stickerGrid');
+    el.innerHTML = stickers.map(p => `
+      <div class="sticker-card">
+        <div class="imgbox"><img src="${p.img}" alt="${p.name}"></div>
+        <div class="name">${p.name}</div>
+        <div class="price">$${p.price.toFixed(2)}</div>
+        <button onclick="addSticker('${p.id}')">Add</button>
+      </div>
+    `).join('');
+  }
+
+  function selectSize(productId, btn){
+    const group = document.querySelector(`.sizes[data-product="${productId}"]`);
+    group.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+
+  function findProduct(id){
+    return hoodies.find(p=>p.id===id) || tees.find(p=>p.id===id) || hats.find(p=>p.id===id);
+  }
+
+  function addApparel(productId){
+    const p = findProduct(productId);
+    const group = document.querySelector(`.sizes[data-product="${productId}"]`);
+    const size = group.querySelector('button.active').textContent;
+    const key = productId+'-'+size;
+    const existing = cart.find(c=>c.key===key);
+    if(existing){ existing.qty++; }
+    else{ cart.push({key, id:p.id, name:p.name, price:p.price, img:p.img, size, qty:1}); }
+    renderCart();
+    flashCart();
+  }
+
+  function addSticker(productId){
+    const p = stickers.find(s=>s.id===productId);
+    const key = productId;
+    const existing = cart.find(c=>c.key===key);
+    if(existing){ existing.qty++; }
+    else{ cart.push({key, id:p.id, name:p.name, price:p.price, img:p.img, size:null, qty:1}); }
+    renderCart();
+    flashCart();
+  }
+
+  function changeQty(key, delta){
+    const item = cart.find(c=>c.key===key);
+    if(!item) return;
+    item.qty += delta;
+    if(item.qty<=0){ cart = cart.filter(c=>c.key!==key); }
+    renderCart();
+  }
+
+  function removeItem(key){
+    cart = cart.filter(c=>c.key!==key);
+    renderCart();
+  }
+
+  function renderCart(){
+    const itemsEl = document.getElementById('drawerItems');
+    const countEl = document.getElementById('cartCount');
+    const subtotalEl = document.getElementById('subtotal');
+    const totalQty = cart.reduce((a,c)=>a+c.qty,0);
+    countEl.textContent = totalQty;
+
+    if(cart.length===0){
+      itemsEl.innerHTML = '<div class="drawer-empty">Your cart is empty.<br>Go grab some gear.</div>';
+    } else {
+      itemsEl.innerHTML = cart.map(c => `
+        <div class="drawer-item">
+          <img src="${c.img}" alt="${c.name}">
+          <div class="info">
+            <div class="name">${c.name}</div>
+            <div class="meta">${c.size ? c.size+' · ' : ''}$${c.price.toFixed(2)}</div>
+            <div class="qty">
+              <button onclick="changeQty('${c.key}',-1)">-</button>
+              <span>${c.qty}</span>
+              <button onclick="changeQty('${c.key}',1)">+</button>
+            </div>
+            <button class="remove" onclick="removeItem('${c.key}')">Remove</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    const subtotal = cart.reduce((a,c)=>a + c.price*c.qty, 0);
+    subtotalEl.textContent = '$'+subtotal.toFixed(2);
+  }
+
+  function flashCart(){
+    openCart();
+  }
+
+  function openCart(){
+    document.getElementById('drawer').classList.add('open');
+    document.getElementById('overlay').classList.add('open');
+  }
+  function closeCart(){
+    document.getElementById('drawer').classList.remove('open');
+    document.getElementById('overlay').classList.remove('open');
+  }
+  async function checkout(){
+    if(cart.length === 0){
+      alert("Your cart is empty.");
+      return;
+    }
+    const btn = document.querySelector('.checkout-btn');
+    const originalText = btn.textContent;
+    btn.textContent = 'Redirecting…';
+    btn.disabled = true;
+
+    try{
+      const res = await fetch('/api/create-checkout-session', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ cart })
+      });
+      const data = await res.json();
+      if(data.url){
+        window.location.href = data.url;
+      } else {
+        throw new Error(data.error || 'Unable to start checkout.');
+      }
+    } catch(err){
+      console.error(err);
+      alert("Something went wrong starting checkout. Please try again.");
+      btn.textContent = originalText;
+      btn.disabled = false;
+    }
+  }
+
+  renderApparelGrid('hoodieGrid', hoodies);
+  renderApparelGrid('teeGrid', tees);
+  renderApparelGrid('hatGrid', hats);
+  renderStickerGrid();
+  renderCart();
+</script>
+
+</body>
+</html>

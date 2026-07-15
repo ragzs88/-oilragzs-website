@@ -1,0 +1,9 @@
+{
+  "name": "oilragzs-website",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "stripe": "^17.4.0",
+    "resend": "^4.0.1"
+  }
+}
