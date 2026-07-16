@@ -279,6 +279,7 @@
   .drawer-foot{border-top:1px solid var(--line); padding:20px 24px 26px;}
   .subtotal-row{display:flex; justify-content:space-between; font-family:'IBM Plex Mono',monospace; margin-bottom:16px; font-size:15px; color:#f3efe6;}
   .checkout-btn{width:100%; padding:15px; background:var(--rust); border:none; color:#0f1013; font-family:'IBM Plex Mono',monospace; text-transform:uppercase; font-size:13px; letter-spacing:0.06em; cursor:pointer;}
+  .checkout-btn:disabled{opacity:0.5; cursor:not-allowed;}
   .checkout-note{font-size:11px; color:var(--steel); margin-top:10px; text-align:center;}
 
   @media (max-width:900px){
@@ -388,7 +389,6 @@
   </div>
 </section>
 
-<!-- FOUNDER -->
 <!-- GALLERY -->
 <section class="gallery-section" id="gallery">
   <div class="wrap">
@@ -473,8 +473,8 @@
   <div class="drawer-items" id="drawerItems"></div>
   <div class="drawer-foot">
     <div class="subtotal-row"><span>Subtotal</span><span id="subtotal">$0.00</span></div>
-    <button class="checkout-btn" onclick="checkout()">Checkout</button>
-    <div class="checkout-note">Online checkout is coming soon — this button doesn't charge a card yet.</div>
+    <button class="checkout-btn" id="checkoutBtn" onclick="checkout()">Checkout</button>
+    <div class="checkout-note" id="checkoutNote"></div>
   </div>
 </div>
 
@@ -524,7 +524,7 @@
   }));
 
   // ---- Cart state ----
-  let cart = []; // {id, name, price, img, size, qty}
+  let cart = []; // {key, id, name, price, img, size, qty}
 
   function renderApparelGrid(containerId, items){
     const el = document.getElementById(containerId);
@@ -594,4 +594,100 @@
     const item = cart.find(c=>c.key===key);
     if(!item) return;
     item.qty += delta;
-    if(item.qty
+    if(item.qty <= 0){
+      cart = cart.filter(c => c.key !== key);
+    }
+    renderCart();
+  }
+
+  function removeItem(key){
+    cart = cart.filter(c => c.key !== key);
+    renderCart();
+  }
+
+  function renderCart(){
+    const totalCount = cart.reduce((sum, c) => sum + c.qty, 0);
+    document.getElementById('cartCount').textContent = totalCount;
+
+    const drawerItems = document.getElementById('drawerItems');
+    if(cart.length === 0){
+      drawerItems.innerHTML = '<div class="drawer-empty">Your cart is empty.</div>';
+    } else {
+      drawerItems.innerHTML = cart.map(c => `
+        <div class="drawer-item">
+          <img src="${c.img}" alt="${c.name}">
+          <div class="info">
+            <div class="name">${c.name}</div>
+            <div class="meta">${c.size ? c.size + ' · ' : ''}$${c.price.toFixed(2)}</div>
+            <div class="qty">
+              <button onclick="changeQty('${c.key}', -1)">-</button>
+              <span>${c.qty}</span>
+              <button onclick="changeQty('${c.key}', 1)">+</button>
+              <button class="remove" onclick="removeItem('${c.key}')">Remove</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    const subtotal = cart.reduce((sum, c) => sum + c.price * c.qty, 0);
+    document.getElementById('subtotal').textContent = '$' + subtotal.toFixed(2);
+
+    const checkoutBtn = document.getElementById('checkoutBtn');
+    checkoutBtn.disabled = cart.length === 0;
+  }
+
+  function flashCart(){
+    const btn = document.querySelector('.cart-btn');
+    if(!btn) return;
+    btn.style.borderColor = 'var(--rust)';
+    setTimeout(() => { btn.style.borderColor = ''; }, 300);
+  }
+
+  function openCart(){
+    document.getElementById('drawer').classList.add('open');
+    document.getElementById('overlay').classList.add('open');
+  }
+
+  function closeCart(){
+    document.getElementById('drawer').classList.remove('open');
+    document.getElementById('overlay').classList.remove('open');
+  }
+
+  async function checkout(){
+    if(cart.length === 0) return;
+    const checkoutBtn = document.getElementById('checkoutBtn');
+    const note = document.getElementById('checkoutNote');
+    checkoutBtn.disabled = true;
+    checkoutBtn.textContent = 'Loading...';
+    note.textContent = '';
+    try{
+      const res = await fetch('/api/create-checkout-session', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ items: cart })
+      });
+      const data = await res.json();
+      if(data && data.url){
+        window.location.href = data.url;
+      } else {
+        note.textContent = 'Something went wrong starting checkout. Please try again.';
+        checkoutBtn.disabled = false;
+        checkoutBtn.textContent = 'Checkout';
+      }
+    } catch(err){
+      note.textContent = 'Something went wrong starting checkout. Please try again.';
+      checkoutBtn.disabled = false;
+      checkoutBtn.textContent = 'Checkout';
+    }
+  }
+
+  // ---- Initial render ----
+  renderApparelGrid('hoodieGrid', hoodies);
+  renderApparelGrid('teeGrid', tees);
+  renderApparelGrid('hatGrid', hats);
+  renderStickerGrid();
+  renderCart();
+</script>
+</body>
+</html>
