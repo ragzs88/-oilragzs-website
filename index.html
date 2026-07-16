@@ -319,7 +319,7 @@
     </div>
     <div class="founder-frame">
       <div class="stamp">Oil Ragzs<br>Founder</div>
-      <img src="founder.jpg" alt="Oil Ragzs founder wearing the Work Wear hoodie and cap">
+      <img src="IMG_2691.png" alt="Oil Ragzs founder wearing the Work Wear hoodie and cap">
       <div class="founder-tag">
         <span class="role">Founded By</span>
         <span class="name">Our Founder</span>
@@ -421,7 +421,7 @@
 
 <section class="founder-section" id="founder">
   <div class="wrap founder-detail">
-    <img src="founder.jpg" alt="Oil Ragzs founder">
+    <img src="IMG_2691.png" alt="Oil Ragzs founder">
     <div>
       <span class="eyebrow">The Story</span>
       <blockquote>"Oil Ragzs started on the job, not in a boardroom. It's gear made by someone who's actually worn it through a full shift."</blockquote>
@@ -594,94 +594,4 @@
     const item = cart.find(c=>c.key===key);
     if(!item) return;
     item.qty += delta;
-    if(item.qty<=0){ cart = cart.filter(c=>c.key!==key); }
-    renderCart();
-  }
-
-  function removeItem(key){
-    cart = cart.filter(c=>c.key!==key);
-    renderCart();
-  }
-
-  function renderCart(){
-    const itemsEl = document.getElementById('drawerItems');
-    const countEl = document.getElementById('cartCount');
-    const subtotalEl = document.getElementById('subtotal');
-    const totalQty = cart.reduce((a,c)=>a+c.qty,0);
-    countEl.textContent = totalQty;
-
-    if(cart.length===0){
-      itemsEl.innerHTML = '<div class="drawer-empty">Your cart is empty.<br>Go grab some gear.</div>';
-    } else {
-      itemsEl.innerHTML = cart.map(c => `
-        <div class="drawer-item">
-          <img src="${c.img}" alt="${c.name}">
-          <div class="info">
-            <div class="name">${c.name}</div>
-            <div class="meta">${c.size ? c.size+' · ' : ''}$${c.price.toFixed(2)}</div>
-            <div class="qty">
-              <button onclick="changeQty('${c.key}',-1)">-</button>
-              <span>${c.qty}</span>
-              <button onclick="changeQty('${c.key}',1)">+</button>
-            </div>
-            <button class="remove" onclick="removeItem('${c.key}')">Remove</button>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    const subtotal = cart.reduce((a,c)=>a + c.price*c.qty, 0);
-    subtotalEl.textContent = '$'+subtotal.toFixed(2);
-  }
-
-  function flashCart(){
-    openCart();
-  }
-
-  function openCart(){
-    document.getElementById('drawer').classList.add('open');
-    document.getElementById('overlay').classList.add('open');
-  }
-  function closeCart(){
-    document.getElementById('drawer').classList.remove('open');
-    document.getElementById('overlay').classList.remove('open');
-  }
-  async function checkout(){
-    if(cart.length === 0){
-      alert("Your cart is empty.");
-      return;
-    }
-    const btn = document.querySelector('.checkout-btn');
-    const originalText = btn.textContent;
-    btn.textContent = 'Redirecting…';
-    btn.disabled = true;
-
-    try{
-      const res = await fetch('/api/create-checkout-session', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({ cart })
-      });
-      const data = await res.json();
-      if(data.url){
-        window.location.href = data.url;
-      } else {
-        throw new Error(data.error || 'Unable to start checkout.');
-      }
-    } catch(err){
-      console.error(err);
-      alert("Something went wrong starting checkout. Please try again.");
-      btn.textContent = originalText;
-      btn.disabled = false;
-    }
-  }
-
-  renderApparelGrid('hoodieGrid', hoodies);
-  renderApparelGrid('teeGrid', tees);
-  renderApparelGrid('hatGrid', hats);
-  renderStickerGrid();
-  renderCart();
-</script>
-
-</body>
-</html>
+    if(item.qty
