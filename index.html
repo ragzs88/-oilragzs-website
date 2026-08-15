@@ -675,8 +675,9 @@
       if(data && data.url){
         window.location.href = data.url;
       } else {
-        note.textContent = 'Something went wrong starting checkout. Please try again.';
-        checkoutBtn.disabled = false;
+   note.textContent = 'Error: ' + (data.error || 'Something went wrong starting checkout.');
+
+        checkoutBtn.disabled = false;   
         checkoutBtn.textContent = 'Checkout';
       }
     } catch(err){
