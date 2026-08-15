@@ -21,7 +21,8 @@ module.exports = async (req, res) => {
         },
         unit_amount: Math.round(item.price * 100)
       },
-      quantity: item.quantity
+      quantity: item.quantity  || item.qty || 1
+
     }));
 
     const session = await stripe.checkout.sessions.create({
